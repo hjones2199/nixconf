@@ -1,4 +1,4 @@
-rec {
+let custom = import ./custom-packages.nix; in rec {
   allowUnfree = true;
 
   devPkgs = pkgs: with pkgs; [
@@ -29,6 +29,12 @@ rec {
     torbrowser
   ];
 
+  astroPkgs = pkgs: with pkgs; [
+    # Astronomy Packages
+    stellarium
+    custom.phd2
+  ];
+
   termPkgs = pkgs: with pkgs; [
     # Terminal Tools
     htop
@@ -56,6 +62,7 @@ rec {
       name = "user-packages";
       paths = devPkgs pkgs ++
               desktopPkgs pkgs ++
+              astroPkgs pkgs ++
               termPkgs pkgs;
       pathsToLink = [
         "/bin"
@@ -63,6 +70,7 @@ rec {
         "/share/doc"
         "/share/applications"
         "/share/icons"
+        "/share/pixmaps"
       ];
       extraOutputsToInstall = [ "man" "doc" ];
     };
