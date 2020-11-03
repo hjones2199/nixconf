@@ -21,18 +21,19 @@ let custom = import ./custom-packages.nix; in rec {
     breeze-icons
 	  emacs
     vscodium
-    mumble
     bitwarden
     etcher
+    mumble
     element-desktop
     discord
+    darktable
     torbrowser
   ];
 
   astroPkgs = pkgs: with pkgs; [
     # Astronomy Packages
-    stellarium
     custom.phd2
+    custom.siril
   ];
 
   termPkgs = pkgs: with pkgs; [
