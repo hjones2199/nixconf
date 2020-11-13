@@ -34,6 +34,7 @@ let custom = import ./custom-packages.nix; in rec {
     # Astronomy Packages
     custom.phd2
     custom.siril
+    custom.entangle
   ];
 
   termPkgs = pkgs: with pkgs; [
