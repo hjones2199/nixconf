@@ -18,6 +18,7 @@ let custom = import ./custom-packages.nix; in rec {
 
   desktopPkgs = pkgs: with pkgs; [
     # Desktop Packages
+    custom.nixGL
     breeze-icons
 	  emacs
     vscodium
@@ -35,6 +36,9 @@ let custom = import ./custom-packages.nix; in rec {
     custom.phd2
     custom.siril
     custom.entangle
+    indilib
+    custom.indi-3rdparty
+    kstars
   ];
 
   termPkgs = pkgs: with pkgs; [
@@ -73,6 +77,7 @@ let custom = import ./custom-packages.nix; in rec {
         "/share/applications"
         "/share/icons"
         "/share/pixmaps"
+        "/share/indi"
       ];
       extraOutputsToInstall = [ "man" "doc" ];
     };

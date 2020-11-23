@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
     homepage = "https://openphdguiding.org/";
     description = "Telescope auto-guidance application";
     license = licenses.bsd3;
-    # maintainers = with maintainers; [ hjones2199 ];
+    maintainers = with maintainers; [ hjones2199 ];
     platforms = [ "x86_64-linux" ];
   };
 }
