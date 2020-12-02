@@ -9,9 +9,9 @@ let nixGLRepo = fetchFromGitHub{
     nixGLFile = import nixGLRepo { };
 in
 {
-  phd2 = callPackage ./custom/phd2.nix { };
+#  phd2 = callPackage ./custom/phd2.nix { };
   siril = callPackage ./custom/siril.nix { };
-  entangle = callPackage ./custom/entangle.nix { };
+#  entangle = callPackage ./custom/entangle.nix { };
   astrophoto = libsForQt5.callPackage ./custom/astrophoto-desktop.nix { };
   indi-3rdparty = callPackage ./custom/indi-3rdparty.nix { };
   nixGL = nixGLFile.nixGLIntel;

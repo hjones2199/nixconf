@@ -22,7 +22,8 @@
   libxslt,
   docbook5,
   docbook_xsl,
-  docbook_xsl_ns
+  docbook_xsl_ns,
+  libxml2
 }:
 
 stdenv.mkDerivation rec {
@@ -65,6 +66,7 @@ stdenv.mkDerivation rec {
     libpeas
     gexiv2
     libraw
+    libxml2
   ];
 
   enableParallelBuilding = true;
