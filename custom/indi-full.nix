@@ -1,26 +1,8 @@
-{ stdenv
-, fetchFromGitHub
-, cmake
-, cfitsio
-, libusb1
-, zlib
-, boost
-, libnova
-, curl
-, libjpeg
-, gsl
-, fftw
-, indilib
-, libgphoto2
-, libraw
-, libftdi1
-, libdc1394
-, gpsd
-, ffmpeg
-}:
+{ stdenv }:
+
 
 stdenv.mkDerivation rec {
-  pname = "indi-3rdparty";
+  pname = "indi-full";
   version = "1.8.6";
 
   src = fetchFromGitHub {
@@ -30,6 +12,12 @@ stdenv.mkDerivation rec {
     sha256 = "1mfirpayyx8h8c1xdw3iqqd2agrq7xa78myjvaqyjamb2lcpqfb9";
   };
 
+  # patchFlags = [
+  #   "-p0"
+  # ];
+  # patches = [
+  #   ./gphoto-fix.patch
+  # ];
   cmakeFlags = [
     "-DINDI_DATA_DIR=\${CMAKE_INSTALL_PREFIX}/share/indi"
     "-DUDEVRULES_INSTALL_DIR=\${CMAKE_INSTALL_PREFIX}/lib/udev/rules.d"
@@ -55,21 +43,21 @@ stdenv.mkDerivation rec {
     zlib
     boost
     libnova
-    gsl
-    gpsd
     libjpeg
+    gsl
     fftw
     indilib
     libgphoto2
     libraw
     libftdi1
     libdc1394
+    gpsd
     ffmpeg
   ];
 
   meta = with stdenv.lib; {
     homepage = "https://www.indilib.org/";
-    description = "Third party drivers for the INDI astronomical software suite";
+    description = "Implementation of the INDI protocol for POSIX operating systems";
     license = licenses.lgpl2Plus;
     maintainers = with maintainers; [ hjones2199 ];
     platforms = [ "x86_64-linux" ];

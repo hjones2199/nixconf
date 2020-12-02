@@ -33,9 +33,9 @@ let custom = import ./custom-packages.nix; in rec {
 
   astroPkgs = pkgs: with pkgs; [
     # Astronomy Packages
-    custom.phd2
     custom.siril
     custom.entangle
+    phd2
     indilib
     custom.indi-3rdparty
     kstars

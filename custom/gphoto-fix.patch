@@ -1,0 +1,14 @@
+--- old/CMakeLists.txt	2020-11-21 18:37:59.872442114 -0600
++++ indi-gphoto/CMakeLists.txt	2020-11-21 18:45:53.534742502 -0600
+@@ -112,9 +112,9 @@
+ exec_program(\"${CMAKE_COMMAND}\" ARGS -E create_symlink indi_gphoto_ccd \$ENV{DESTDIR}${BIN_INSTALL_DIR}/indi_fuji_ccd)\n")
+ set_target_properties(indi_gphoto_ccd PROPERTIES POST_INSTALL_SCRIPT ${CMAKE_CURRENT_BINARY_DIR}/make_gphoto_symlink.cmake)
+ 
+-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/indi_gphoto.xml DESTINATION ${INDI_DATA_DIR})
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/indi_gphoto.xml DESTINATION ${CMAKE_INSTALL_PREFIX}/share/indi)
+ 
+ # Disable automount for DSLR cameras
+ IF (UNIX AND NOT APPLE)
+-    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/85-disable-dslr-automout.rules DESTINATION ${UDEVRULES_INSTALL_DIR})
++    install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/85-disable-dslr-automout.rules DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/udev/rules.d)
+ ENDIF ()
