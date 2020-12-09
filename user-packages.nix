@@ -31,6 +31,7 @@ in
     pkgs.slack
     pkgs.element-desktop
     pkgs.discord
+    pkgs.spotify
     pkgs.darktable
     pkgs.torbrowser
   ];
@@ -52,7 +53,7 @@ in
     pkgs.neofetch
     pkgs.postgresql_12
     pkgs.w3m
-    pkgs.tmux
+    # pkgs.tmux
     pkgs.whois
     pkgs.traceroute
     pkgs.nettools

@@ -15,7 +15,7 @@ in
     };
     Service = {
       type = "simple";
-      ExecStart = "${pkgs.indilib}/bin/indiserver ${with-drivers drivers}";
+      ExecStart = "/home/hdjones/.nix-profile/bin/indiserver indi_simulator_telescope indi_simulator_guide";
     };
   };
 }

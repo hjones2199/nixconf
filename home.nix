@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  nixos = false; # todo, make this better
   user-packages = (import ./user-packages.nix) { pkgs = pkgs; };
   user-services = (import ./user-services.nix) { pkgs = pkgs; };
 in rec {
@@ -31,6 +32,15 @@ in rec {
     enable = true;
     userName = "Hunter Jones";
     userEmail = "hjones2199@gmail.com";
+  };
+
+  programs.tmux = {
+    enable = true;
+    shortcut = "'C-\\'";
+    terminal = "screen-256color";
+    extraConfig = ''
+    source "${if nixos then pkgs.powerline else "/usr/share"}/powerline/bindings/tmux/powerline.conf"
+    '';
   };
 
   systemd.user.services = {

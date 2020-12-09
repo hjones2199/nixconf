@@ -9,8 +9,8 @@ in
       Description = "Starts GPSD daemon on /dev/ttyACM0";
     };
     Service = {
-      type = "forking";
-      ExecStart = "${pkgs.gpsd}/bin/gpsd /dev/ttyACM0";
+      type = "simple";
+      ExecStart = "/home/hdjones/.nix-profile/bin/gpsd -N /dev/ttyACM0";
     };
   };
   indisim = indi-services.indisim;
