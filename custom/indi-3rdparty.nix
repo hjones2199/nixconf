@@ -21,13 +21,13 @@
 
 stdenv.mkDerivation rec {
   pname = "indi-3rdparty";
-  version = "1.8.6";
+  version = "1.8.7";
 
   src = fetchFromGitHub {
     owner = "indilib";
-    repo = "indi-3rdparty";
+    repo = pname;
     rev = "v${version}";
-    sha256 = "1mfirpayyx8h8c1xdw3iqqd2agrq7xa78myjvaqyjamb2lcpqfb9";
+    sha256 = "16m31k5hn6mb6xgqxs05n6savyc248ca32snslpqbswprlf7ylrp";
   };
 
   cmakeFlags = [
