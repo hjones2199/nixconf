@@ -33,17 +33,16 @@ in
     pkgs.discord
     pkgs.spotify
     pkgs.darktable
-    pkgs.torbrowser
   ];
 
   astroPkgs = [
     # Astronomy Packages
     pkgs.gpsd
     pkgs.indilib
-    custom.indi-3rdparty
+    pkgs.siril
     pkgs.phd2
     pkgs.kstars
-    custom.siril
+    custom.indi-3rdparty
   ];
 
   termPkgs = [
@@ -53,7 +52,6 @@ in
     pkgs.neofetch
     pkgs.postgresql_12
     pkgs.w3m
-    # pkgs.tmux
     pkgs.whois
     pkgs.traceroute
     pkgs.nettools

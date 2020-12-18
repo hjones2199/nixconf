@@ -25,8 +25,12 @@ in rec {
     ++ user-packages.desktopPkgs
     ++ user-packages.astroPkgs;
 
-  programs.emacs.enable = true;
   programs.man.enable = false;
+
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [ epkgs.vterm ];
+  };
 
   programs.git = {
     enable = true;
@@ -46,5 +50,6 @@ in rec {
   systemd.user.services = {
     gpsd = user-services.gpsd;
     indisim = user-services.indisim;
+    indilive = user-services.indilive;
   };
 }

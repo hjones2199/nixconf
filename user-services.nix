@@ -1,17 +1,30 @@
 { pkgs, ... }:
 
 let
-  indi-services = (import ./custom/services/indi-services.nix) { pkgs = pkgs; };
+  user-profile = "/home/hdjones/.nix-profile";
+  indi-service = import ./custom/services/indiserver.nix;
+  gpsd-service = import ./custom/services/gpsd.nix;
 in
 {
-  gpsd = {
-    Unit = {
-      Description = "Starts GPSD daemon on /dev/ttyACM0";
-    };
-    Service = {
-      type = "simple";
-      ExecStart = "/home/hdjones/.nix-profile/bin/gpsd -N /dev/ttyACM0";
-    };
+  gpsd = gpsd-service {
+    prefix = user-profile;
+    device = "/dev/ttyACM0";
   };
-  indisim = indi-services.indisim;
+  indisim = indi-service {
+    pkgs = pkgs;
+    prefix = user-profile;
+    drivers = [
+      "indi_simulator_telescope"
+      "indi_simulator_guide"
+    ];
+  };
+  indilive = indi-service {
+    pkgs = pkgs;
+    prefix = user-profile;
+    drivers = [
+      "indi_eqmod_telescope"
+      "indi_canon_ccd"
+      "indi_gpsd"
+    ];
+  };
 }
