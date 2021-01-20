@@ -47,6 +47,7 @@ in
 
   termPkgs = [
     # Terminal Tools
+    pkgs.gnupg
     pkgs.zile
     pkgs.htop
     pkgs.neofetch

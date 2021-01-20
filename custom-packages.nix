@@ -1,6 +1,6 @@
 with import <nixpkgs> {};
 
-let nixGLRepo = fetchFromGitHub{
+let nixGLRepo = fetchFromGitHub {
       owner = "guibou";
       repo = "nixGL";
       rev = "7d6bc1b21316bab6cf4a6520c2639a11c25a220e";
