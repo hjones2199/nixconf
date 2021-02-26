@@ -1,4 +1,5 @@
 { stdenv,
+  lib,
   fetchgit,
   pkg-config,
   meson,
@@ -70,7 +71,7 @@ stdenv.mkDerivation rec {
 
   postConfigure = "cd nixbld";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://www.siril.org/";
     description = "An astronomical image processing tool";
     license = licenses.gpl3;

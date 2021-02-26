@@ -4,16 +4,26 @@
 * Information
 This repo is my user-specific configuration of the nix package manager. To install
 the package-set (assuming you have nix installed), clone the repo to *$HOME/.config/nixpkgs/*
-and run one of the following:
+create a *user-info.nix* file in the following format:
+
+#+begin_src nix
+  {
+    unixName = "<unix user name>";
+    fullName = "<full name>";
+    userEmail = "<email address>";
+  }
+#+end_src
+
+And run one of the following:
 
 ** NixOS
 #+begin_src bash
-nix-env -iA nixos.userPackages
+  nix-env -iA nixos.userPackages
 #+end_src
 
 ** Non-NixOS
 #+begin_src bash
-nix-env -iA nixpkgs.userPackages
+  nix-env -iA nixpkgs.userPackages
 #+end_src
 
 

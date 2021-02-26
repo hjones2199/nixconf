@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , fetchFromGitHub
 , cmake
 , cfitsio
@@ -67,7 +68,7 @@ stdenv.mkDerivation rec {
     ffmpeg
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://www.indilib.org/";
     description = "Third party drivers for the INDI astronomical software suite";
     license = licenses.lgpl2Plus;

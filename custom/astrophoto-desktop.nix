@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, pkgconfig, cmake, wrapQtAppsHook,
+{ stdenv, lib, fetchgit, pkgconfig, cmake, wrapQtAppsHook,
   qtwebengine, curl, indilib, libnova }:
 
 stdenv.mkDerivation rec {
@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://astrophotoplus.gulinux.net/";
     description = "A lightweight sequence generator and INDI client";
     license = licenses.gpl3;

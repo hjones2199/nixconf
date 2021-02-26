@@ -1,4 +1,5 @@
 { stdenv,
+  lib,
   fetchFromGitLab,
   meson,
   ninja,
@@ -78,7 +79,7 @@ stdenv.mkDerivation rec {
     "-Dc_args=-I${glib.dev}/include/gio-unix-2.0"
   ];
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://entangle-photo.org/";
     description = "A graphical interface for tethered shooting";
     license = licenses.gpl3;

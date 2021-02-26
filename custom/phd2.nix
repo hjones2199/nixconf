@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, pkgconfig, cmake, gtk3,
+{ stdenv, lib, fetchFromGitHub, pkgconfig, cmake, gtk3,
   wxGTK30-gtk3, curl, gettext, glib, indilib, libnova }:
 
 stdenv.mkDerivation rec {
@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://openphdguiding.org/";
     description = "Telescope auto-guidance application";
     license = licenses.bsd3;

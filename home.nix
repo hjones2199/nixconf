@@ -1,16 +1,16 @@
 { config, pkgs, ... }:
 
 let
-  nixos = false; # todo, make this better
+  user-info = (import ./user-info.nix);
   user-packages = (import ./user-packages.nix) { pkgs = pkgs; };
   user-services = (import ./user-services.nix) { pkgs = pkgs; };
 in rec {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home = {
-    username = "hdjones";
-    homeDirectory = "/home/hdjones";
+  home = rec {
+    username = user-info.unixName;
+    homeDirectory = "/home/${username}";
     stateVersion = "21.03";
     extraOutputsToInstall = [ "man" "doc" ];
   };
@@ -27,6 +27,16 @@ in rec {
 
   programs.man.enable = false;
 
+  programs.zsh = {
+    enable = true;
+    sessionVariables = {
+      EDITOR = "emacs";
+    };
+    # initExtra = ''
+    #   eval `dircolors $HOME/.config/LS_COLORS`
+    # '';
+  };
+
   programs.emacs = {
     enable = true;
     extraPackages = epkgs: [ epkgs.vterm ];
@@ -34,8 +44,8 @@ in rec {
 
   programs.git = {
     enable = true;
-    userName = "Hunter Jones";
-    userEmail = "hjones2199@gmail.com";
+    userName = user-info.fullName;
+    userEmail = user-info.userEmail;
   };
 
   programs.tmux = {
@@ -43,7 +53,7 @@ in rec {
     shortcut = "'C-\\'";
     terminal = "screen-256color";
     extraConfig = ''
-    source "${if nixos then pkgs.powerline else "/usr/share"}/powerline/bindings/tmux/powerline.conf"
+    source "${pkgs.powerline}/share/tmux/powerline.conf"
     '';
   };
 
