@@ -3,14 +3,18 @@
 let
   user-info = (import ./user-info.nix);
   user-packages = (import ./user-packages.nix) { pkgs = pkgs; };
-  user-services = (import ./user-services.nix) { pkgs = pkgs; };
-in rec {
+  user-services = (import ./user-services.nix) {
+    pkgs = pkgs;
+    homeDir = user-info.homeDir;
+  };
+in
+rec {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   home = rec {
     username = user-info.unixName;
-    homeDirectory = "/home/${username}";
+    homeDirectory = user-info.homeDir;
     stateVersion = "21.03";
     extraOutputsToInstall = [ "man" "doc" ];
   };

@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, homeDir, ... }:
 
 let
-  user-profile = "/home/hdjones/.nix-profile";
+  user-profile = "${homeDir}/.nix-profile";
   indi-service = import ./custom/services/indiserver.nix;
   gpsd-service = import ./custom/services/gpsd.nix;
 in
