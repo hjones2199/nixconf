@@ -35,10 +35,8 @@ rec {
     enable = true;
     sessionVariables = {
       EDITOR = "emacs";
+      VISUAL = "emacs";
     };
-    # initExtra = ''
-    #   eval `dircolors $HOME/.config/LS_COLORS`
-    # '';
   };
 
   programs.emacs = {
@@ -56,9 +54,16 @@ rec {
     enable = true;
     shortcut = "'C-\\'";
     terminal = "screen-256color";
-    extraConfig = ''
-    source "${pkgs.powerline}/share/tmux/powerline.conf"
-    '';
+    plugins = with pkgs; [
+      {
+        plugin = tmuxPlugins.yank;
+        extraConfig = ''
+          set -g @tmux_power_theme 'forest'
+          set -g @tmux_power_time_icon ' '
+        '';
+      }
+      tmuxPlugins.power-theme
+    ];
   };
 
   systemd.user.services = {
