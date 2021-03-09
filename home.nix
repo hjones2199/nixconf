@@ -46,11 +46,12 @@ rec {
 
   programs.git = {
     enable = true;
+    package = pkgs.gitFull;
     userName = user-info.fullName;
     userEmail = user-info.userEmail;
     extraConfig = {
       credential = {
-        helper = "${pkgs.git}/share/git/contrib/credential/gnome-keyring";
+        helper = "${pkgs.gitFull}/share/git/contrib/credential/libsecret/git-credential-libsecret";
       };
     };
   };

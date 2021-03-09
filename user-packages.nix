@@ -25,7 +25,6 @@ in
     pkgs.ninja
     pkgs.cmake
     # Version Control
-    pkgs.git
     pkgs.subversion
     # Misc
     pkgs.websocat
