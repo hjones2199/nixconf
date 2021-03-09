@@ -10,7 +10,6 @@ in
     pkgs.clang_11
     pkgs.llvmPackages.bintools
     pkgs.rustup
-    # pkgs.solc
     # Debuggers
     pkgs.gdb
     pkgs.lldb
@@ -76,12 +75,11 @@ in
   astroPkgs = [
     # Astronomy Packages
     pkgs.gpsd
-    pkgs.indilib
+    pkgs.indi-full
     pkgs.siril
     pkgs.phd2
     pkgs.kstars
     pkgs.stellarium
-    custom.indi-3rdparty
   ];
 
   termPkgs = [
