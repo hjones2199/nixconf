@@ -48,6 +48,11 @@ rec {
     enable = true;
     userName = user-info.fullName;
     userEmail = user-info.userEmail;
+    extraConfig = {
+      credential = {
+        helper = "${pkgs.git}/share/git/contrib/credential/gnome-keyring";
+      };
+    };
   };
 
   programs.tmux = {
