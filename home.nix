@@ -15,7 +15,7 @@ rec {
   home = rec {
     username = user-info.unixName;
     homeDirectory = user-info.homeDir;
-    stateVersion = "21.03";
+    stateVersion = "21.05";
     extraOutputsToInstall = [ "man" "doc" ];
   };
 
@@ -36,6 +36,7 @@ rec {
     sessionVariables = {
       EDITOR = "emacs";
       VISUAL = "emacs";
+      QT_STYLE_OVERRIDE = "Adwaita-Dark";
     };
   };
 
