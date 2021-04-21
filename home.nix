@@ -15,7 +15,7 @@ rec {
   home = rec {
     username = user-info.unixName;
     homeDirectory = user-info.homeDir;
-    stateVersion = "21.03";
+    stateVersion = "21.05";
     extraOutputsToInstall = [ "man" "doc" ];
   };
 
@@ -72,9 +72,15 @@ rec {
     ];
   };
 
+  programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+  };
+
   systemd.user.services = {
     gpsd = user-services.gpsd;
     indisim = user-services.indisim;
     indilive = user-services.indilive;
+    protonbridge = user-services.protonbridge;
   };
 }

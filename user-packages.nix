@@ -45,7 +45,7 @@ in
     pkgs.slack
     pkgs.element-desktop
     pkgs.discord
-    pkgs.zoom-us
+    # pkgs.zoom-us
     pkgs.spotify
     # Multimedia
     pkgs.vlc
@@ -63,12 +63,14 @@ in
     pkgs.multimc
     # Misc
     pkgs.wireshark
-    # pkgs.vscodium
-    pkgs.vscode
+    pkgs.vscodium
+    # pkgs.vscode
     pkgs.virt-manager
     pkgs.remmina
     pkgs.bitwarden
     pkgs.etcher
+    pkgs.evolution
+    pkgs.protonmail-bridge
   ];
 
   astroPkgs = [
