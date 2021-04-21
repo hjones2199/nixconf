@@ -15,16 +15,4 @@ create a *user-info.nix* file in the following format:
   }
 #+end_src
 
-And run one of the following:
-
-** NixOS
-#+begin_src bash
-  nix-env -iA nixos.userPackages
-#+end_src
-
-** Non-NixOS
-#+begin_src bash
-  nix-env -iA nixpkgs.userPackages
-#+end_src
-
-
+The configuration now requires home-manager to function.

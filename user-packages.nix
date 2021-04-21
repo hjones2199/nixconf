@@ -2,6 +2,21 @@
 
 let
   custom = import ./custom-packages.nix;
+  usteam = pkgs.steam.override {
+    extraPkgs = pkgs: with pkgs; [
+      gnome3.gtk
+      zlib
+      dbus
+      freetype
+      glib
+      atk
+      cairo
+      gdk_pixbuf
+      pango
+      fontconfig
+      xorg.libxcb
+    ];
+  };
 in
 {
   devPkgs = [
@@ -58,8 +73,8 @@ in
     pkgs.papirus-icon-theme
     pkgs.capitaine-cursors
     # Games
-    pkgs.steam
-    pkgs.steam-run
+    usteam
+    pkgs.steam-run-native
     pkgs.multimc
     # Misc
     pkgs.wireshark

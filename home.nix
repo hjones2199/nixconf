@@ -36,6 +36,7 @@ rec {
     sessionVariables = {
       EDITOR = "emacs";
       VISUAL = "emacs";
+      QT_STYLE_OVERRIDE = "Adwaita-Dark";
     };
   };
 
