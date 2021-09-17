@@ -2,19 +2,14 @@
 
 let
   custom = import ./custom-packages.nix;
-  usteam = pkgs.steam.override {
-    extraPkgs = pkgs: with pkgs; [
-      gnome3.gtk
-      zlib
-      dbus
-      freetype
-      glib
-      atk
-      cairo
-      gdk_pixbuf
-      pango
-      fontconfig
-      xorg.libxcb
+  gnu-octave = pkgs.octaveFull.withPackages (f:
+    [
+      pkgs.octavePackages.symbolic
+      pkgs.octavePackages.parallel
+    ]);
+  gimp-env = pkgs.gimp-with-plugins.override {
+    plugins = with pkgs.gimpPlugins; [
+      resynthesizer
     ];
   };
 in
@@ -22,8 +17,8 @@ in
   devPkgs = [
     # Development Packages
     # Compilers
-    pkgs.clang_11
-    pkgs.llvmPackages.bintools
+    pkgs.gcc
+    # pkgs.llvmPackages.bintools
     pkgs.rustup
     # Debuggers
     pkgs.gdb
@@ -34,7 +29,6 @@ in
     pkgs.racket
     pkgs.clojure
     pkgs.nodejs
-    pkgs.octaveFull
     # Build Systems
     pkgs.meson
     pkgs.ninja
@@ -42,7 +36,6 @@ in
     # Version Control
     pkgs.subversion
     # Misc
-    pkgs.websocat
     pkgs.glade
     pkgs.clang-analyzer
     pkgs.clang-tools
@@ -55,16 +48,16 @@ in
   desktopPkgs = [
     # Desktop Packages
     # Chat
+    pkgs.gnome.gnome-shell-extensions
     pkgs.mumble
     pkgs.teams
     pkgs.slack
     pkgs.element-desktop
     pkgs.discord
-    # pkgs.zoom-us
     pkgs.spotify
     # Multimedia
     pkgs.vlc
-    pkgs.gimp
+    gimp-env
     pkgs.krita
     pkgs.pinta
     pkgs.darktable
@@ -73,19 +66,20 @@ in
     pkgs.papirus-icon-theme
     pkgs.capitaine-cursors
     # Games
-    usteam
+    pkgs.steam
     pkgs.steam-run-native
     pkgs.multimc
     # Misc
     pkgs.wireshark
     pkgs.vscodium
-    # pkgs.vscode
     pkgs.virt-manager
+    gnu-octave
     pkgs.remmina
     pkgs.bitwarden
     pkgs.etcher
     pkgs.evolution
     pkgs.protonmail-bridge
+    custom.dash-to-dock
   ];
 
   astroPkgs = [
@@ -120,6 +114,7 @@ in
     pkgs.fd
     pkgs.sd
     pkgs.sshfs
+    pkgs.websocat
     pkgs.nixopsUnstable
   ];
 }

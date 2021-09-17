@@ -15,4 +15,5 @@ in
   astrophoto = libsForQt5.callPackage ./custom/astrophoto-desktop.nix { };
   indi-3rdparty = callPackage ./custom/indi-3rdparty.nix { };
   nixGL = nixGLFile.nixGLIntel;
+  dash-to-dock = callPackage ./custom/dash-to-dock.nix { };
 }
