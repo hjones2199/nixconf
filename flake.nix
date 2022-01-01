@@ -6,16 +6,18 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
-
-  let user-info = (import ./user-info.nix);
-  outputs = inputs: {
+  
+  outputs = inputs: rec {
+    user-info = (import ./user-info.nix);
     homeConfigurations = {
-      jdoe = inputs.home-manager.lib.homeManagerConfiguration {
+      minimal = inputs.home-manager.lib.homeManagerConfiguration rec {
         system = "x86_64-linux";
         homeDirectory = user-info.homeDir;
         username = user-info.unixName;
         configuration.imports = [ ./home.nix ];
+        stateVersion = "21.11";
       };
     };
+    defaultPackage = homeConfigurations.minimal.activationPackage;
   };
 }
