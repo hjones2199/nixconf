@@ -2,11 +2,6 @@
 
 let
   user-info = (import ./user-info.nix);
-  user-packages = (import ./user-packages.nix) { pkgs = pkgs; };
-  user-services = (import ./user-services.nix) {
-    pkgs = pkgs;
-    homeDir = user-info.homeDir;
-  };
 in
 rec {
   # Let Home Manager install and manage itself.
@@ -15,19 +10,13 @@ rec {
   home = rec {
     username = user-info.unixName;
     homeDirectory = user-info.homeDir;
-    stateVersion = "21.05";
+    stateVersion = "21.11";
     extraOutputsToInstall = [ "man" "doc" ];
   };
 
   nixpkgs.config = {
     allowUnfree = true;
   };
-
-  home.packages =
-    user-packages.devPkgs
-    ++ user-packages.termPkgs
-    ++ user-packages.desktopPkgs
-    ++ user-packages.astroPkgs;
 
   programs.man.enable = false;
 
@@ -40,10 +29,10 @@ rec {
     };
   };
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [ epkgs.vterm ];
-  };
+  # programs.emacs = {
+  #   enable = true;
+  #   extraPackages = epkgs: [ epkgs.vterm ];
+  # };
 
   programs.git = {
     enable = true;
@@ -78,10 +67,4 @@ rec {
     nix-direnv.enable = true;
   };
 
-  systemd.user.services = {
-    gpsd = user-services.gpsd;
-    indisim = user-services.indisim;
-    indilive = user-services.indilive;
-    protonbridge = user-services.protonbridge;
-  };
 }
