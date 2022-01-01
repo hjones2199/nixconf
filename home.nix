@@ -8,10 +8,10 @@ rec {
   programs.home-manager.enable = true;
 
   home = rec {
-    username = user-info.unixName;
-    homeDirectory = user-info.homeDir;
-    stateVersion = "21.11";
     extraOutputsToInstall = [ "man" "doc" ];
+    packages = [
+      pkgs.nix
+    ];
   };
 
   nixpkgs.config = {
@@ -22,6 +22,10 @@ rec {
 
   programs.zsh = {
     enable = true;
+    oh-my-zsh = {
+      enable = true;
+      theme = "agnoster";
+    };
     sessionVariables = {
       EDITOR = "emacs";
       VISUAL = "emacs";
