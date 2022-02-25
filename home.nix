@@ -2,6 +2,10 @@
 
 let
   user-info = (import ./user-info.nix);
+  user-services = (import ./user-services.nix) {
+    pkgs = pkgs;
+    homeDir = user-info.home-dir;
+  };
 in
 rec {
   # Let Home Manager install and manage itself.
@@ -20,17 +24,31 @@ rec {
 
   programs.man.enable = false;
 
-  programs.zsh = {
+  programs.zsh = rec {
     enable = true;
     oh-my-zsh = {
       enable = true;
       theme = "agnoster";
+      plugins = [
+        "sudo" "systemd" "git" "dnf" "yum" "emacs" "ansible"
+        "firewalld" "kubectl" "helm" "rust" "gcloud"
+      ];
     };
-    sessionVariables = {
+    enableCompletion = true;
+    dotDir = ".config/zsh";
+    sessionVariables = rec {
       EDITOR = "emacs";
-      VISUAL = "emacs";
+      VISUAL = EDITOR;
       QT_STYLE_OVERRIDE = "Adwaita-Dark";
     };
+    profileExtra = ''
+      if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then
+        . $HOME/.nix-profile/etc/profile.d/nix.sh;
+      fi
+      if [ -e $HOME/${dotDir}/.zlocal ]; then
+        source $HOME/${dotDir}/.zlocal;
+      fi
+    '';
   };
 
   # programs.emacs = {
@@ -71,4 +89,7 @@ rec {
     nix-direnv.enable = true;
   };
 
+  systemd.user.services = {
+    gpg-smartcard = user-services.gpg-smartcard;
+  };
 }
