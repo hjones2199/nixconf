@@ -90,6 +90,6 @@ rec {
   };
 
   systemd.user.services = {
-    gpg-smartcard = user-services.gpg-smartcard;
+    # gpg-smartcard = user-services.gpg-smartcard;
   };
 }

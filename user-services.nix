@@ -5,11 +5,11 @@ let
 in {
   gpg-smartcard = {
     Unit = {
-      Description = "Starts GPS daemon on ${device}";
+      Description = "Starts gpg smartcard daemon";
     };
     Service = {
       type = "simple";
-      ExecStart = "${prefix}/bin/gpsd -N ${device}";
+      ExecStart = "gnupg-pkcs11-scd --daemon";
     };
   };
 }
