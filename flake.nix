@@ -13,7 +13,7 @@
       let
         pkgs = inputs.nixpkgs.legacyPackages.${system};
         user-info = (import ./user-info.nix);
-        state-version = "21.11";
+        state-version = "23.05";
       in
         rec {
         packages = {

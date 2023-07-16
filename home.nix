@@ -14,7 +14,17 @@ rec {
   home = rec {
     extraOutputsToInstall = [ "man" "doc" ];
     packages = [
-      pkgs.nix
+      pkgs.nixUnstable
+      pkgs.kubectl
+      pkgs.kubernetes-helm
+      pkgs.argo
+      pkgs.argocd
+      pkgs.vault
+      pkgs.terraform
+      pkgs.racket
+      pkgs.google-cloud-sdk
+      pkgs.mozwire
+      pkgs.go
     ];
   };
 
@@ -30,8 +40,11 @@ rec {
       enable = true;
       theme = "agnoster";
       plugins = [
-        "sudo" "systemd" "git" "dnf" "yum" "emacs" "ansible"
-        "firewalld" "kubectl" "helm" "rust" "gcloud"
+        "sudo" "git" "systemd" "firewalld" "dnf"
+        "gcloud" "aws"
+        "ansible" "kubectl" "helm" "oc" "vault"
+        "rust" "golang"
+        "emacs" "ripgrep"
       ];
     };
     enableCompletion = true;
